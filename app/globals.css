@@ -114,8 +114,8 @@
 
 :root {
   --color-primary: #001021;
-  --color-accent: #1481BA;
-  --color-accent-hover: #11B5E4;
+  --color-accent: #11b5e4;
+  --color-accent-hover: #1481ba;
 }
 
 .bg-primary {
@@ -129,11 +129,9 @@
   color: var(--color-accent);
 }
 
-
 .hover\:text-accent:hover {
   color: var(--color-accent-hover);
 }
-
 
 .bg-accent {
   background-color: var(--color-accent);
@@ -143,7 +141,6 @@
   background-color: var(--color-accent-hover);
 }
 
-/* Animations */
 @keyframes accordion-down {
   from {
     height: 0;
@@ -173,8 +170,31 @@
 @layer base {
   body {
     font-family: var(--font-jetbrainsMono);
-    background-color: #001021; 
-    line-height: 1.75; 
+    background-color: #001021;
+    line-height: 1.75;
     color: white;
+  }
+  .h1 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .h2 {
+    font-size: 36px;
+  }
+  .h3 {
+    font-size: 20px;
+  }
+
+  @media (min-width: 1280px) {
+    .h1 {
+      font-size: 80px;
+    }
+    .h2 {
+      font-size: 48px;
+    }
+    .h3 {
+      font-size: 24px;
+    }
   }
 }

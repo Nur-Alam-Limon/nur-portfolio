@@ -1,3 +1,4 @@
+import MobileNav from "./MobileNav";
 import Navbar from "./Navbar";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -16,11 +17,13 @@ const Header = () => {
         <div className="hidden xl:flex items-center gap-8">
           <Navbar />
           <Link href="/contact">
-            <Button>Hire Me</Button>
+            <Button className="cursor-pointer">Hire Me</Button>
           </Link>
         </div>
 
-        <div className="xl:hidden">mobile nav</div>
+        <div className="xl:hidden">
+          <MobileNav/>
+        </div>
       </div>
     </header>
   );
