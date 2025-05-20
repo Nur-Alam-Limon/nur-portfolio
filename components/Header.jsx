@@ -6,11 +6,11 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="py-8 xl:py-12 text-white">
+    <header className="py-8 xl:py-12 text-white px-8 md:px-0">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
           <h1 className="text-4xl font-semibold">
-            Nur <span className="text-accent">Alam</span>
+           <span className="text-accent">Nur Alam</span>
           </h1>
         </Link>
 

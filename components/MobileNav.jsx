@@ -39,7 +39,7 @@ export default function MobileNav() {
         <div className="mt-32 mb-40 text-center text-2xl">
           <Link href="/">
             <h1 className="text-4xl fonbt-semibold">
-              Nur <span className="text-accent">Alam</span>
+              <span className="text-accent">Nur Alam</span>
             </h1>
           </Link>
         </div>
