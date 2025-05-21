@@ -1,21 +1,39 @@
-import Link from "next/link"
-import {FaGithub, FaLinkedinIn, FaYoutube, FaTwitter} from "react-icons/fa"
+import Link from "next/link";
+import { FaGithub, FaLinkedinIn, FaYoutube, FaTwitter } from "react-icons/fa";
 
 const socials = [
-    {icon: <FaGithub/> ,path: ""},
-    {icon: <FaLinkedinIn/> ,path: ""},
-    {icon: <FaYoutube/> ,path: ""},
-    {icon: <FaTwitter/> ,path: ""},
-]
+  { icon: <FaGithub />, path: "https://github.com/yourusername" },
+  { icon: <FaLinkedinIn />, path: "https://linkedin.com/in/yourprofile" },
+  { icon: <FaYoutube />, path: "https://youtube.com/@yourchannel" },
+  { icon: <FaTwitter />, path: "https://twitter.com/yourhandle" },
+];
 
-export default function Social({ containerStyles, iconStyles}){
-    return <div className={containerStyles}>
-        {socials.map((item, index)=>{
-            return (
-                <Link key={index} href={item.path} className={`${iconStyles}`}>
-                    {item.icon}
-                </Link>
-            )
-        })}
-    </div>
+export default function Social() {
+  return (
+    <footer className="shadow-inner shadow-[#11b5e4]/20 text-white py-10 mt-16">
+      <div className="container mx-auto flex flex-col items-center gap-6">
+        <h2 className="text-2xl font-semibold text-accent">
+          Connect with me
+        </h2>
+
+        <div className="flex gap-6">
+          {socials.map((item, index) => (
+            <Link
+              key={index}
+              href={item.path}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 text-2xl border border-accent rounded-full flex justify-center items-center text-accent hover:bg-accent hover:!text-white transition-all duration-300"
+            >
+              {item.icon}
+            </Link>
+          ))}
+        </div>
+
+        <p className="text-sm text-muted-foreground mt-2 text-center">
+          © {new Date().getFullYear()} Nur Alam Chowdhury. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  );
 }
