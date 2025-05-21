@@ -23,7 +23,7 @@ export default function Social() {
               href={item.path}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 text-2xl border border-accent rounded-full flex justify-center items-center text-accent hover:bg-accent hover:!text-white transition-all duration-300"
+              className="w-10 h-10 text-xl border border-accent rounded-full flex justify-center items-center text-accent hover:bg-accent hover:!text-white transition-all duration-300"
             >
               {item.icon}
             </Link>

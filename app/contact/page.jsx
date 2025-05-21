@@ -85,7 +85,7 @@ export default function Contact() {
       className="py-16"
     >
       <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row gap-[30px]">
+        <div className="flex flex-col xl:flex-row gap-[100px]">
           {/* FORM */}
           <div className="xl:h-[54%] order-2 xl:order-none">
             <form

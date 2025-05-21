@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   FaHtml5,
   FaCss3,
@@ -16,14 +17,16 @@ import {
   FaReact,
   FaFigma,
   FaNodeJs,
+  FaShopify,
+  FaGithub,
 } from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
+import { SiTailwindcss, SiNextdotjs, SiTypescript, SiRemix, SiRedux, SiExpress, SiMongodb, SiPostgresql, SiAdobeillustrator } from "react-icons/si";
 
 const about = {
   info: [
     {
       fieldName: "Name",
-      fieldValue: "Nur Alam",
+      fieldValue: "Nur Alam Chowdhury",
     },
     {
       fieldName: "Phone",
@@ -44,33 +47,56 @@ const about = {
   ],
 };
 
-const experience = {
-  items: [
-    {
-      company: "KnotByte",
-      position: "Front-End Developer",
-      duration: "2020-2021",
-    },
-    {
-      company: "Bevy Commerce",
-      position: "Full Stack Developer",
-      duration: "2021-Present",
-    },
-  ],
-};
-
-const education = {
-  items: [
-    {
-      institution: "Rajshahi University of Engineering & Technology",
-      degree: "Bsc in Electrical & Computer Engineering",
-      duration: "2018-Present",
-    },
-  ],
-};
-
 const skills = {
   skillList: [
+    {
+      icon: <FaReact />,
+      name: "React",
+    },
+    {
+      icon: <SiNextdotjs />,
+      name: "NextJs",
+    },
+    {
+      icon: <FaJs />,
+      name: "Javascript",
+    },
+    {
+      icon: <SiTypescript />,
+      name: "Typescript",
+    },
+    {
+      icon: <SiRemix />,
+      name: "Remix",
+    },
+    {
+      icon: <SiRedux />,
+      name: "Redux",
+    },
+    {
+      icon: <FaNodeJs />,
+      name: "NodeJs",
+    },
+    {
+      icon: <SiExpress />,
+      name: "ExpressJs",
+    },
+    {
+      icon: <FaShopify />,
+      name: "Shopify App",
+    },
+    {
+      icon: <SiMongodb />,
+      name: "Mongodb",
+    },
+    {
+      icon: <SiPostgresql/>,
+      name: "PostgreSql",
+    },
+    {
+      icon: <SiTailwindcss />,
+      name: "TailwindCSS",
+    },
     {
       icon: <FaHtml5 />,
       name: "HTML5",
@@ -80,33 +106,43 @@ const skills = {
       name: "CSS3",
     },
     {
-      icon: <FaJs />,
-      name: "Javascript",
+      icon: <FaGithub />,
+      name: "Git",
     },
-    {
-      icon: <FaReact />,
-      name: "React",
-    },
-    {
-      icon: <FaNodeJs />,
-      name: "NodeJs",
-    },
+
     {
       icon: <FaFigma />,
       name: "Figma",
     },
     {
-      icon: <SiNextdotjs />,
-      name: "NextJs",
-    },
-    {
-      icon: <SiTailwindcss />,
-      name: "TailwindCSS",
+      icon: <SiAdobeillustrator />,
+      name: "Illustrator",
     },
   ],
 };
 
 export default function About() {
+  const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/education")
+      .then((res) => res.json())
+      .then((data) => {
+        setEducation(data);
+      })
+      .catch(() => setEducation([]));
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/experience")
+      .then((res) => res.json())
+      .then((data) => {
+        setExperience(data);
+      })
+      .catch(() => setExperience([]));
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -114,7 +150,7 @@ export default function About() {
         opacity: 1,
         transition: { delay: 0.2, duration: 0.2, ease: "easeIn" },
       }}
-      className="h-screen flex items-center justify-center xl:py-0"
+      className="min-h-screen mt-20 flex xl:py-0"
     >
       <div className="container mx-auto">
         <Tabs
@@ -140,25 +176,52 @@ export default function About() {
                   problem-solver and team player.
                 </p>
 
-                <ScrollArea className="h-[400px]">
-                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                    {experience.items.map((item, index) => {
-                      return (
-                        <li
-                          key={index}
-                          className="bg-[#1A2A3F] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
-                        >
-                          <span className="text-accent">{item.duration}</span>
-                          <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
-                            {item.position}
-                          </h3>
-                          <div className="flex items-center gap-3">
-                            <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                            <p className="text-white/60">{item.company}</p>
-                          </div>
-                        </li>
-                      );
-                    })}
+                <ScrollArea className="min-h-[600px]">
+                  <ul className="grid grid-cols-1 gap-[30px]">
+                    {experience.length > 0 ? (
+                      experience.map((item, index) => {
+                        return (
+                          <li
+                            key={index}
+                            className="bg-[#1A2A3F] py-6 px-6 rounded-xl flex flex-col gap-3 border-l-4 border-accent shadow-md"
+                          >
+                            <div className="flex flex-col md:flex-row justify-between items-center w-full">
+                              <h3 className="text-xl font-semibold text-accent">
+                                {item.name}
+                              </h3>
+                              <span className="text-md text-white/50">
+                                {item.from} - {item.to}
+                              </span>
+                            </div>
+
+                            <p className="text-white font-medium">
+                              {item.position}
+                            </p>
+
+                            {item.stacks?.length > 0 && (
+                              <div className="flex flex-wrap gap-2 mt-1">
+                                {item.stacks.map((stack, idx) => (
+                                  <span
+                                    key={idx}
+                                    className="text-[13px] bg-white/10 text-white/80 px-2 py-1 rounded-md"
+                                  >
+                                    {stack}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {item.summary && (
+                              <p className="text-white/80 text-md leading-relaxed whitespace-pre-line mt-2 text-start">
+                                {item.summary}
+                              </p>
+                            )}
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <p className="text-white/60">No Experience data found.</p>
+                    )}
                   </ul>
                 </ScrollArea>
               </div>
@@ -174,24 +237,38 @@ export default function About() {
                 </p>
 
                 <ScrollArea className="h-[400px]">
-                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                    {education.items.map((item, index) => {
-                      return (
-                        <li
-                          key={index}
-                          className="bg-[#1A2A3F] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
-                        >
-                          <span className="text-accent">{item.duration}</span>
-                          <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
-                            {item.degree}
-                          </h3>
-                          <div className="flex items-center gap-3">
-                            <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                            <p className="text-white/60">{item.institution}</p>
-                          </div>
-                        </li>
-                      );
-                    })}
+                  <ul className="grid grid-cols-1 gap-[30px]">
+                    {education.length > 0 ? (
+                      education.map((item, index) => {
+                        return (
+                          <li
+                            key={index}
+                            className="bg-[#1A2A3F] py-6 px-8 rounded-xl flex flex-col gap-3 border-l-4 border-accent shadow-md"
+                          >
+                            <div className="flex flex-col md:flex-row gap-2 justify-between items-center w-full">
+                              <h3 className="text-xl font-semibold text-accent">
+                                {item.institution}
+                              </h3>
+                              <span className="text-sm text-white/50">
+                                {item.from} - {item.to}
+                              </span>
+                            </div>
+
+                            <p className="text-white font-medium">
+                              {item.degree}
+                            </p>
+
+                            {item.details && (
+                              <p className="text-white/60 text-sm leading-relaxed text-start">
+                                {item.details}
+                              </p>
+                            )}
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <p className="text-white/60">No education data found.</p>
+                    )}
                   </ul>
                 </ScrollArea>
               </div>
@@ -213,11 +290,14 @@ export default function About() {
                       <li key={index}>
                         <TooltipProvider delayDuration={100}>
                           <Tooltip>
-                            <TooltipTrigger className="w-full h-[150px] bg-[#1A2A3F] rounded-xl flex justify-center items-center group">
-                              <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                            <TooltipTrigger className="w-full h-[100px] bg-[#1A2A3F] rounded-xl flex justify-center items-center group">
+                              <div className="text-5xl group-hover:text-accent transition-all duration-300">
                                 {skill.icon}
                               </div>
                             </TooltipTrigger>
+                            <div className="text-md text-center pt-4">
+                              {skill.name}
+                            </div>
                             <TooltipContent>
                               <p className="capitalize">{skill.name}</p>
                             </TooltipContent>
@@ -249,7 +329,7 @@ export default function About() {
                     return (
                       <li
                         key={index}
-                        className="flex items-center justify-center xl:justify-start gap-4"
+                        className="flex items-center justify-start xl:justify-start gap-4"
                       >
                         <span className="text-white/60">{item.fieldName}</span>
                         <span className="text-xl">{item.fieldValue}</span>

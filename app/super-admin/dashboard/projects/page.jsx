@@ -22,7 +22,8 @@ export default function ProjectsPage() {
     stack: "",
     image: "",
     live: "",
-    github: "",
+    githubFrontend: "",
+    githubBackend: "",
   });
   const [editId, setEditId] = useState(null);
 
@@ -93,7 +94,8 @@ export default function ProjectsPage() {
         stack: "",
         image: "",
         live: "",
-        github: "",
+        githubFrontend: "",
+        githubBackend: "",
       });
       setEditId(null);
       setOpen(false);
@@ -129,7 +131,8 @@ export default function ProjectsPage() {
       stack: project.stack.map((s) => s.name).join(", "),
       image: project.image || "",
       live: project.live || "",
-      github: project.github || "",
+      githubFrontend: project.githubFrontend || "",
+      githubBackend: project.githubBackend || "",
     });
     setEditId(project._id);
     setOpen(true);
@@ -152,7 +155,8 @@ export default function ProjectsPage() {
                 stack: "",
                 image: "",
                 live: "",
-                github: "",
+                githubFrontend: "",
+                githubBackend: "",
               });
             }
           }}
@@ -258,16 +262,31 @@ export default function ProjectsPage() {
               />
 
               <label
-                htmlFor="github"
+                htmlFor="githubFrontend"
                 className="block text-sm font-medium text-white/80"
               >
-                GitHub Link
+                Frontend GitHub Link
               </label>
               <Input
-                id="github"
-                name="github"
-                placeholder="GitHub Link"
-                value={form.github}
+                id="githubFrontend"
+                name="githubFrontend"
+                placeholder="GitHub Frontend Link"
+                value={form.githubFrontend}
+                onChange={handleChange}
+                className="w-full"
+              />
+
+              <label
+                htmlFor="githubBackend"
+                className="block text-sm font-medium text-white/80"
+              >
+                Backend GitHub Link
+              </label>
+              <Input
+                id="githubBackend"
+                name="githubBackend"
+                placeholder="GitHub Backend Link"
+                value={form.githubBackend}
                 onChange={handleChange}
                 className="w-full"
               />
@@ -345,20 +364,36 @@ export default function ProjectsPage() {
                   </span>
                 )}
 
-                {project.github ? (
+                {project.githubFrontend ? (
                   <a
-                    href={project.github}
+                    href={project.githubFrontend}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white"
                   >
-                    Github Repo :{" "}
-                    <span className="text-accent">{project.github}</span>
+                    Frontend Github Repo :{" "}
+                    <span className="text-accent">{project.githubFrontend}</span>
                   </a>
                 ) : (
                   <span className="text-white/30 cursor-not-allowed select-none">
-                    Github Repo :{" "}
-                    <span className="text-accent">{project.github}</span>
+                    Frontend Github Repo :{" "}
+                    <span className="text-accent">{project.githubFrontend}</span>
+                  </span>
+                )}
+                {project.githubBackend ? (
+                  <a
+                    href={project.githubBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white"
+                  >
+                    Backend Github Repo :{" "}
+                    <span className="text-accent">{project.githubBackend}</span>
+                  </a>
+                ) : (
+                  <span className="text-white/30 cursor-not-allowed select-none">
+                    Backend Github Repo :{" "}
+                    <span className="text-accent">{project.githubBackend}</span>
                   </span>
                 )}
               </div>

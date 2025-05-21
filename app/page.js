@@ -75,7 +75,7 @@ export default function Home() {
                 download
                 target="_blank"
                 rel="noopener noreferrer">
-                <Button variant="outline" size="lg" className="cursor-pointer uppercase flex items-center gap-2 hover:!text-white">
+                <Button variant="outline" size="lg" className="cursor-pointer uppercase flex items-center gap-2 hover:!text-white mx-auto md:mx-0">
                   <span> Download Resume</span>
                   <FiDownload className="text-xl" />
                 </Button>

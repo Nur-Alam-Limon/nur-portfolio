@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import LogoutBtn from "@/components/LogoutBtn";
 import { usePathname } from "next/navigation";
 
 export default function SuperAdminLayout({ children }) {
@@ -17,7 +16,7 @@ export default function SuperAdminLayout({ children }) {
     <div className="min-h-screen flex">
       {/* Sidebar */}
       <aside className="w-64 border-r border-[#11b5e4]/50 text-white p-12">
-        <h2 className="text-xl font-bold text-accent text-center mb-12">
+        <h2 className="text-xl font-bold text-accent text-center mb-12 border-b pb-6">
           Admin Panel
         </h2>
         <nav className="space-y-8 text-lg">
@@ -33,7 +32,6 @@ export default function SuperAdminLayout({ children }) {
             </Link>
           ))}
         </nav>
-        <LogoutBtn />
       </aside>
 
       {/* Main Content */}

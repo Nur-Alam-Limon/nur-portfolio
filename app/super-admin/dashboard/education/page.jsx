@@ -84,6 +84,7 @@ export default function EducationPage() {
               placeholder="2020"
               value={form.from}
               onChange={(e) => setForm({ ...form, from: e.target.value })}
+              className="w-full"
             />
           </div>
           <div className="w-1/2">
@@ -92,6 +93,7 @@ export default function EducationPage() {
               placeholder="2025"
               value={form.to}
               onChange={(e) => setForm({ ...form, to: e.target.value })}
+              className="w-full"
             />
           </div>
         </div>

@@ -7,7 +7,8 @@ const ProjectSchema = new mongoose.Schema({
   stack: [{ name: String }],
   image: String,
   live: String,
-  github: String,
+  githubFrontend: String,
+  githubBackend: String,
 }, { timestamps: true });
 
 export default mongoose.models.Project || mongoose.model('Project', ProjectSchema);

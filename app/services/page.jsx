@@ -68,20 +68,20 @@ export default function Services() {
                 className="flex-1 flex flex-col justify-center gap-4 group"
               >
                 <div className="w-full flex justify-between items-center">
-                  <div className="text-4xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">
+                  <div className="text-3xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">
                     {service.num}
                   </div>
                   <Link
                     href={service.href}
-                    className="w-[50px] h-[50px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45"
+                    className="w-[40px] h-[40px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45"
                   >
-                    <BsArrowDownRight className="text-primary text-3xl" />
+                    <BsArrowDownRight className="text-primary text-2xl" />
                   </Link>
                 </div>
-                <h2 className="text-[32px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">
+                <h2 className="text-[24px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">
                   {service.title}
                 </h2>
-                <p className="text-white/60">{service.description}</p>
+                <p className="text-white/60 text-[16px]">{service.description}</p>
                 <div className="border-b border-white/20 w-full"></div>
               </div>
             );
