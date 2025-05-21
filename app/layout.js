@@ -1,6 +1,7 @@
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Social from "@/components/Social";
 
 const JetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrainsMono",
@@ -21,6 +22,11 @@ export default function RootLayout({ children }) {
       >
         <Header />
         {children}
+        <Social
+          containerStyles="flex gap-8 justify-center item-center mt-20 mb-12"
+          iconStyles="w-20 h-20 border border-accent rounded-full flex justify-center items-center text-accent hover:bg-accent hover:!text-white hover:transition-all duration-500" 
+        />
+
       </body>
     </html>
   );

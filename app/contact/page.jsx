@@ -41,7 +41,7 @@ export default function Contact() {
         opacity: 1,
         transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
       }}
-      className="py-6"
+      className="py-16"
     >
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-[30px]">

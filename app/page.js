@@ -8,15 +8,16 @@ import Stats from '@/components/Stats';
 
 export default function Home() {
   return (
-    <section className="h-full py-30">
+    <section className="h-full py-16">
       <div className="container mx-auto h-full">
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl">Software Developer</span>
-            <h1 className="h2">
+            
+            <h1 className='text-4xl leading-[4rem]'>
               Hello I'm <br /> <span className="text-accent">Nur Alam Chowdhury</span>
             </h1>
-            <p className="max-w-[500px] mb-9 text-white/80">
+            <div className="text-2xl py-6">Software Developer</div>
+            <p className="max-w-[500px] mb-9 text-white/70">
               Results-driven Full-Stack Developer with 3.5+ years of experience in MERN Stack and scalable web applications. Proficient in React.js, Next.js, Nest.js, Node.js, and MongoDB. Strong problem-solving and leadership skills. Open to diverse projects, leveraging expertise to build robust solutions.
             </p>
             <div className="flex flex-col gap-8 w-full">

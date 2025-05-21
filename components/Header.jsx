@@ -7,21 +7,21 @@ import React from "react";
 const Header = () => {
   return (
     <header className="py-8 xl:py-12 text-white px-8 md:px-0">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/">
-          <h1 className="text-4xl font-semibold">
+      <div className="container mx-auto flex justify-end lg:justify-center items-center">
+        {/* <Link href="/">
+          <h1 className="text-3xl font-semibold">
            <span className="text-accent">Nur Alam</span>
           </h1>
-        </Link>
+        </Link> */}
 
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-16">
           <Navbar />
           <Link href="/contact">
-            <Button className="cursor-pointer">Hire Me</Button>
+            <Button className="cursor-pointer text-lg">Hire Me</Button>
           </Link>
         </div>
 
-        <div className="xl:hidden">
+        <div className="lg:hidden">
           <MobileNav/>
         </div>
       </div>

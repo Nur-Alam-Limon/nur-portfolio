@@ -212,3 +212,7 @@
 .group:hover .group-hover\:bg-accent {
   background-color: var(--color-accent);
 }
+
+.container {
+  width: 80vw;
+}
