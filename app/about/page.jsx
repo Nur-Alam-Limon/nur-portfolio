@@ -129,7 +129,7 @@ export default function About() {
         opacity: 1,
         transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
       }}
-      className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0 py-16"
+      className="h-screen flex items-center justify-center xl:py-0"
     >
       <div className="container mx-auto">
         <Tabs

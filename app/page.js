@@ -1,10 +1,11 @@
 "use client"
-import { Button } from '@/components/ui/button';
+
 import { FiDownload } from 'react-icons/fi'
 import React, { useEffect, useState } from 'react'
 import Photo from '@/components/Photo';
 import Stats from '@/components/Stats';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
 const titles = [
   "Software Engineer",
