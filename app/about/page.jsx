@@ -20,9 +20,6 @@ import {
 import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
 
 const about = {
-  title: "About Me",
-  description:
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse quisquam, ipsam sit quibusdam, placeat obcaecati, eius porro cum assumenda qui omnis ex vel sequi explicabo!",
   info: [
     {
       fieldName: "Name",
@@ -48,10 +45,6 @@ const about = {
 };
 
 const experience = {
-  icon: "",
-  title: "My Experience",
-  description:
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse quisquam, ipsam sit quibusdam, placeat obcaecati, eius porro cum assumenda qui omnis ex vel sequi explicabo!",
   items: [
     {
       company: "KnotByte",
@@ -67,10 +60,6 @@ const experience = {
 };
 
 const education = {
-  icon: "",
-  title: "My Education",
-  description:
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse quisquam, ipsam sit quibusdam, placeat obcaecati, eius porro cum assumenda qui omnis ex vel sequi explicabo!",
   items: [
     {
       institution: "Rajshahi University of Engineering & Technology",
@@ -81,10 +70,6 @@ const education = {
 };
 
 const skills = {
-  icon: "",
-  title: "My Skills",
-  description:
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse quisquam, ipsam sit quibusdam, placeat obcaecati, eius porro cum assumenda qui omnis ex vel sequi explicabo!",
   skillList: [
     {
       icon: <FaHtml5 />,
@@ -127,7 +112,7 @@ export default function About() {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
+        transition: { delay: 0.2, duration: 0.2, ease: "easeIn" },
       }}
       className="h-screen flex items-center justify-center xl:py-0"
     >
@@ -146,10 +131,15 @@ export default function About() {
           <div className="min-h-[70vh] w-full">
             <TabsContent value="experience" className="w-full">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h3 className="text-4xl font-bold">{experience.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {experience.description}
+                <h3 className="text-4xl font-bold">My Experience</h3>
+                <p className="text-white/60 mx-auto xl:mx-0">
+                  Over the past few years, I’ve had the opportunity to work on a
+                  variety of exciting projects, helping businesses grow through
+                  thoughtful and effective digital solutions. Each experience
+                  has helped me grow not just as a developer, but as a
+                  problem-solver and team player.
                 </p>
+
                 <ScrollArea className="h-[400px]">
                   <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
                     {experience.items.map((item, index) => {
@@ -175,10 +165,14 @@ export default function About() {
             </TabsContent>
             <TabsContent value="education" className="w-full">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h3 className="text-4xl font-bold">{education.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {education.description}
+                <h3 className="text-4xl font-bold">My Education</h3>
+                <p className="text-white/60 mx-auto xl:mx-0">
+                  My academic journey in engineering has laid the foundation for
+                  my problem-solving mindset and passion for technology. It’s
+                  where I first discovered my love for building things through
+                  code.
                 </p>
+
                 <ScrollArea className="h-[400px]">
                   <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
                     {education.items.map((item, index) => {
@@ -205,9 +199,12 @@ export default function About() {
             <TabsContent value="skills" className="w-full h-full">
               <div className="flex flex-col gap-[30px]">
                 <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                  <h3 className="text-4xl font-bold">{skills.title}</h3>
-                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                    {skills.description}
+                  <h3 className="text-4xl font-bold">My Skills</h3>
+                  <p className="text-white/60 mx-auto xl:mx-0">
+                    Over time, I’ve built a strong skill set by working on
+                    real-world projects. From writing clean frontend code to
+                    managing backend systems, I enjoy learning and applying new
+                    tools to solve problems effectively.
                   </p>
                 </div>
                 <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
@@ -237,11 +234,17 @@ export default function About() {
               className="w-full text-center xl:text-left"
             >
               <div className="flex flex-col gap-[30px]">
-                <h3 className="text-4xl font-bold">{about.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {about.description}
+                <h3 className="text-4xl font-bold">About Me</h3>
+                <p className="text-white/60 mx-auto xl:mx-0">
+                  I'm Nur Alam Chowdhury, a software engineer from Bangladesh
+                  who loves building things that make life easier. I'm
+                  passionate about technology, creativity, and solving
+                  real-world problems through code. Outside of work, I enjoy
+                  learning new tools, exploring ideas, and spending time with my
+                  family.
                 </p>
-                <ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
+
+                <ul className="grid grid-cols-1 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
                   {about.info.map((item, index) => {
                     return (
                       <li

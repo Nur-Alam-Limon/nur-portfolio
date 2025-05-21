@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useState } from "react";
 
 const initialForm = {
   name: "",
@@ -63,7 +63,9 @@ export default function ExperiencePage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-2xl font-bold my-8 text-accent text-center">Manage Experience</h2>
+      <h2 className="text-2xl font-bold my-8 text-accent text-center">
+        Manage Experience
+      </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4 mb-10">
         <div>
@@ -141,16 +143,23 @@ export default function ExperiencePage() {
           {editingId ? "Update Experience" : "Add Experience"}
         </Button>
       </form>
-<div className="text-center text-accent text-2xl pb-6 font-semibold">Experience List</div>
+      <div className="text-center text-accent text-2xl pb-6 font-semibold">
+        Experience List
+      </div>
       <div className="space-y-6">
         {experiences.map((exp) => (
-          <Card key={exp._id} className="p-6 text-sm text-white space-y-4 bg-[#1A2A3F]">
+          <Card
+            key={exp._id}
+            className="p-6 text-sm text-white space-y-4 bg-[#1A2A3F]"
+          >
             <div className="flex justify-between items-start gap-4">
               <div className="flex-1">
                 <h3 className="text-lg font-semibold">
                   {exp.position} at {exp.name}
                 </h3>
-                <p className="text-muted-foreground my-2">{exp.from} - {exp.to}</p>
+                <p className="text-muted-foreground my-2">
+                  {exp.from} - {exp.to}
+                </p>
                 <p className="my-4">{exp.summary}</p>
                 <p className="text-white/70 text-md">
                   Stacks: {exp.stacks.join(", ")}

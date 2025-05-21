@@ -11,7 +11,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState, useEffect } from "react";
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -27,7 +26,6 @@ export default function ProjectsPage() {
   });
   const [editId, setEditId] = useState(null);
 
-  // Fetch projects on mount
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -35,7 +33,6 @@ export default function ProjectsPage() {
   const fetchProjects = async () => {
     try {
       const res = await fetch("/api/projects");
-      console.log("res", res);
       if (!res.ok) throw new Error("Failed to fetch projects");
       const data = await res.json();
       setProjects(data);
@@ -293,7 +290,7 @@ export default function ProjectsPage() {
               <div className="text-3xl font-extrabold text-transparent text-outline select-none pointer-events-none my-4">
                 {String(index + 1).padStart(2, "0")}
               </div>
-              {/* Small Image */}
+         
               <div className="w-60 h-48 flex-shrink-0 relative overflow-hidden rounded-md border border-gray-600">
                 <img
                   src={project.image}
@@ -303,7 +300,7 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            {/* Info */}
+     
             <div className="flex-1 flex flex-col">
               <div className="flex justify-between items-start mt-4">
                 <h2 className="text-xl font-bold text-white capitalize">

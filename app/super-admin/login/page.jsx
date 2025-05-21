@@ -15,17 +15,15 @@ export default function AdminLogin() {
     const res = await fetch("/api/admin/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // <-- Add this header
+        "Content-Type": "application/json", 
       },
       body: JSON.stringify(data),
     });
 
     const result = await res.json();
-    console.log("result", result, res);
     setLoading(false);
 
     if (res.ok) {
-      console.log("Redirecting");
       router.push("/super-admin/dashboard");
     } else {
       console.error("Error:", result.message);

@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Nur Alam Chowdhury - Portfolio Website
 
-First, run the development server:
+This is the source code for my personal **Portfolio Website**, built to showcase my skills, projects, and allow visitors to get in touch with me directly.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Overview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* Built with **Next.js (App Router)** and **Tailwind CSS** for a modern, responsive design
+* Includes smooth animations using **Framer Motion**
+* Includes components of **Shadcn UI**
+* Added Experience, Services, Skills, Education, Social, Contact Sections
+* Features a fully functional **Contact Form** integrated with **Nodemailer** to send emails directly via a secure backend API route
+* Mobile and desktop friendly with a clean, professional UI
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+* **Animated page transitions** with Framer Motion
+* **Custom reusable UI components**: Added components for reuse
+* **Admin Panel** Added admin panel for making content dynamic
+* Responsive layout supporting both mobile and desktop views
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+* Next.js (React framework) with App Router
+* Tailwind CSS for styling
+* Shadcn UI for building blocks
+* Framer Motion for animations
+* React Icons for iconography
+* Nodemailer for email sending in backend API routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thanks for checking out my portfolio project!
+— Nur Alam Chowdhury

@@ -21,9 +21,9 @@ const services = [
   },
   {
     num: "03",
-    title: "Backend & API Development",
+    title: "Mobile App Development",
     description:
-      "Designing secure, efficient REST and GraphQL APIs using Node.js, Express, NestJS, and MongoDB with scalable architecture.",
+      "Building cross-platform mobile applications using React Native and Expo, focusing on performance, native integration, and smooth user experience.",
     href: "",
   },
   {
@@ -32,8 +32,21 @@ const services = [
     description:
       "Pixel-perfect, accessible frontend interfaces using Figma designs, Tailwind CSS, and reusable component architecture.",
     href: "",
-  }
- 
+  },
+  {
+    num: "05",
+    title: "API & Backend Development",
+    description:
+      "Developing scalable REST and GraphQL APIs using Node.js, Express, NestJS, and MongoDB with a focus on performance, security, and clean architecture.",
+    href: "",
+  },
+  {
+    num: "06",
+    title: "Automation & Integration Solutions",
+    description:
+      "Streamlining business operations by automating repetitive tasks and integrating third-party APIs, including Shopify, Redis, Firebase, and more.",
+    href: "",
+  },
 ];
 
 export default function Services() {
@@ -44,7 +57,7 @@ export default function Services() {
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
-            transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
+            transition: { delay: 0.2, duration: 0.2, ease: "easeIn" },
           }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-[80px] py-16"
         >
@@ -58,11 +71,16 @@ export default function Services() {
                   <div className="text-4xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">
                     {service.num}
                   </div>
-                  <Link href={service.href} className="w-[50px] h-[50px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45">
-                    <BsArrowDownRight className="text-primary text-3xl"/>
+                  <Link
+                    href={service.href}
+                    className="w-[50px] h-[50px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45"
+                  >
+                    <BsArrowDownRight className="text-primary text-3xl" />
                   </Link>
                 </div>
-                <h2 className="text-[32px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">{service.title}</h2>
+                <h2 className="text-[32px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">
+                  {service.title}
+                </h2>
                 <p className="text-white/60">{service.description}</p>
                 <div className="border-b border-white/20 w-full"></div>
               </div>

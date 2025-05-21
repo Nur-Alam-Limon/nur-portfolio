@@ -51,7 +51,7 @@ export default function Home() {
       <div className="container mx-auto h-full">
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
           <div className="text-center xl:text-left order-2 xl:order-none">
-            
+
             <h1 className='text-4xl leading-[4rem]'>
               Hello I'm <br /> <span className="text-accent">Nur Alam Chowdhury</span>
             </h1>
@@ -70,10 +70,16 @@ export default function Home() {
               Passionate Full-Stack Developer with 3.5+ years of hands-on experience building scalable and high-performance web applications using the MERN stack. Proficient in modern technologies like React.js, Next.js, Node.js, Nest.js, and MongoDB. Known for clean code, efficient problem-solving, and a strong eye for detail. I thrive in dynamic environments and enjoy turning complex ideas into elegant, functional solutions.
             </p>
             <div className="flex flex-col gap-8 w-full">
-              <Button variant="outline" size="lg" className="cursor-pointer uppercase flex items-center gap-2 hover:!text-white">
-                <span> Download Resume</span>
-                <FiDownload className="text-xl" />
-              </Button>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1b-OKXcDAg0uZkWA6o8qZ6i-HPH9ztUV4"
+                download
+                target="_blank"
+                rel="noopener noreferrer">
+                <Button variant="outline" size="lg" className="cursor-pointer uppercase flex items-center gap-2 hover:!text-white">
+                  <span> Download Resume</span>
+                  <FiDownload className="text-xl" />
+                </Button>
+              </a>
             </div>
           </div>
           <div className='order-1 xl:order-none mb-8 xl:mb-0'>
@@ -81,7 +87,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Stats/>
+      <Stats />
     </section>
   );
 }

@@ -72,7 +72,7 @@ const projects = [
   },
 ];
 
-export default function Work() {
+export default function Projects() {
   const [project, setProject] = useState(projects[0]);
 
   const handleSlideChange = (swiper) => {
@@ -85,7 +85,7 @@ export default function Work() {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
+        transition: { delay: 0.2, duration: 0.2, ease: "easeIn" },
       }}
       className="min-h-[80vh] flex flex-col justify-center py-16 xl:px-0"
     >

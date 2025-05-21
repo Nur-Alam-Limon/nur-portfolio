@@ -8,7 +8,7 @@ const experienceSchema = new mongoose.Schema(
     to: { type: String, required: true },
     stacks: [String],
     summary: { type: String, required: true },
-    icon: { type: String }, // optional image link
+    icon: { type: String }, 
   },
   { timestamps: true }
 );

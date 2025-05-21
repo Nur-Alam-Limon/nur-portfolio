@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedinIn, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaFacebook, FaMediumM } from "react-icons/fa";
 
 const socials = [
-  { icon: <FaGithub />, path: "https://github.com/yourusername" },
-  { icon: <FaLinkedinIn />, path: "https://linkedin.com/in/yourprofile" },
-  { icon: <FaYoutube />, path: "https://youtube.com/@yourchannel" },
-  { icon: <FaTwitter />, path: "https://twitter.com/yourhandle" },
+  { icon: <FaGithub />, path: "https://github.com/Nur-Alam-Limon" },
+  { icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/nur-alam04/" },
+  { icon: <FaFacebook />, path: "https://www.facebook.com/nuralam008/" },
+  { icon: <FaMediumM />, path: "https://medium.com/@nuralam201425" },
 ];
 
 export default function Social() {

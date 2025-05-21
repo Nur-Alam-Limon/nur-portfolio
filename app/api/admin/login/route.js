@@ -18,7 +18,6 @@ export async function POST(req) {
     return NextResponse.json({ message: "Invalid password" }, { status: 401 });
   }
 
-  // Encode the secret for jose
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
   // Create the JWT using jose

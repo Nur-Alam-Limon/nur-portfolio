@@ -6,7 +6,6 @@ export async function GET() {
   try {
     await connectDB();
     const projects = await Projects.find();
-    console.log("Projects", projects)
     return new Response(JSON.stringify(projects), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: 'Failed to fetch projects' }), { status: 500 });
