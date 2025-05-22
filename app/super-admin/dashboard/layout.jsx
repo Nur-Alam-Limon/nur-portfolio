@@ -1,4 +1,5 @@
 "use client";
+import LogoutBtn from "@/components/LogoutBtn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,6 +11,7 @@ export default function SuperAdminLayout({ children }) {
     { href: "/super-admin/dashboard/projects", label: "Projects" },
     { href: "/super-admin/dashboard/education", label: "Education" },
     { href: "/super-admin/dashboard/experience", label: "Experience" },
+    { href: "/super-admin/dashboard/blog", label: "Blogs" },
   ];
 
   return (
@@ -31,6 +33,7 @@ export default function SuperAdminLayout({ children }) {
               {link.label}
             </Link>
           ))}
+          <LogoutBtn/>
         </nav>
       </aside>
 

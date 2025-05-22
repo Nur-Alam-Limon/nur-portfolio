@@ -239,3 +239,23 @@
   scrollbar-color: #555 #001021;
 }
 
+.ql-container {
+  color: #ffffff !important;
+  border-radius: 0.5rem;
+  min-height: 200px;
+  border: 1px solid #FFFFFF1A !important;
+}
+
+.ql-editor::before {
+  color: white !important; 
+}
+
+.ql-toolbar {
+  color: white !important;
+  border: 1px solid #FFFFFF1A !important;
+}
+
+.ql-toolbar .ql-picker {
+  color: #ffffff !important;
+}
+

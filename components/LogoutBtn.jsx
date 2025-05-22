@@ -15,12 +15,11 @@ export default function LogoutBtn() {
   };
 
   return (
-    <div className="absolute top-12 right-20">
+    <div className="mt-20">
       {path.startsWith("/super-admin/dashboard") && (
         <Button
           onClick={handleLogout}
-          variant="outline"
-          className="cursor-pointer text-lg"
+          className="cursor-pointer rounded-sm text-md"
         >
           Logout
         </Button>

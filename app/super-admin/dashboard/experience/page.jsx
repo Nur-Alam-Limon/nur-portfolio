@@ -174,12 +174,13 @@ export default function ExperiencePage() {
               )}
             </div>
             <div className="flex gap-4 mt-4">
-              <Button variant="outline" onClick={() => handleEdit(exp)}>
+              <Button variant="outline" onClick={() => handleEdit(exp)} className="cursor-pointer">
                 Edit
               </Button>
               <Button
                 variant="destructive"
                 onClick={() => handleDelete(exp._id)}
+                className="border border-white cursor-pointer"
               >
                 Delete
               </Button>

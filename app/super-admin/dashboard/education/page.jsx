@@ -123,10 +123,10 @@ export default function EducationPage() {
               <p className="mt-2">{edu.details}</p>
             </div>
             <div className="flex gap-4 mt-4">
-              <Button variant="outline" onClick={() => handleEdit(edu)}>
+              <Button variant="outline" onClick={() => handleEdit(edu)} className="cursor-pointer">
                 Edit
               </Button>
-              <Button variant="destructive" onClick={() => handleDelete(edu._id)}>
+              <Button variant="destructive" onClick={() => handleDelete(edu._id)} className="border border-white cursor-pointer">
                 Delete
               </Button>
             </div>
