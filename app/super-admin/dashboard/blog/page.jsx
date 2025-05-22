@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -82,7 +81,9 @@ export default function BlogPage() {
   };
 
   useEffect(() => {
-    if (quillRef.current && !quill) {
+  const initializeQuill = async () => {
+    const Quill = (await import("quill")).default;
+    if (quillRef.current && !quill && quillRef.current.childNodes.length === 0) {
       const q = new Quill(quillRef.current, {
         theme: "snow",
         placeholder: "Write your blog content here...",
@@ -98,7 +99,13 @@ export default function BlogPage() {
       });
       setQuill(q);
     }
-  }, [quillRef, quill]);
+  };
+
+  if (typeof window !== "undefined") {
+    initializeQuill();
+  }
+}, [quillRef, quill]);
+
 
   useEffect(() => {
     fetchBlogs();
