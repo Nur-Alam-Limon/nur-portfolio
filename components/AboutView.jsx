@@ -43,7 +43,7 @@ export default function AboutView() {
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
                 <h3 className="text-4xl font-bold">Experience</h3>
                 <p className="text-white/60 mx-auto xl:mx-0 max-w-[760px]">
-                  {years}+ years of production work. Bevy is the center. RiseUp was a contract beside it. Jobsyo is a product I co-founded beside it.
+                  {years}+ years of production work. Bevy is the center. Freelance projects sat beside it. Jobsyo is a product I co-founded beside it.
                 </p>
                 <ScrollArea className="min-h-[640px]">
                   <ul className="grid grid-cols-1 gap-[30px] pr-4">
@@ -149,7 +149,7 @@ export default function AboutView() {
               <div className="flex flex-col gap-[30px]">
                 <h3 className="text-4xl font-bold">About</h3>
                 <p className="text-white/70 max-w-[760px] mx-auto xl:mx-0">
-                  I am a senior software engineer in Dhaka. For {years}+ years I have led production work at Bevy Commerce: an App Store cart app, pricing, a 1.94 million-unit migration, QuickBooks, reporting for Power BI, and the careers portal. I also led a nautical chart catalog on contract, co-founded Jobsyo, and shipped Sakinah on my own. Before the engineering roles I designed for TEDxRUET and for KnotByte. I take a problem through to a number someone can check.
+                  I am a senior software engineer in Dhaka. For {years}+ years I have led production work at Bevy Commerce: an App Store cart app, pricing, a 1.94 million-unit migration, QuickBooks, reporting for Power BI, and the careers portal. I also led a nautical chart catalog as a freelance project, co-founded Jobsyo, and shipped Sakinah on my own. Before the engineering roles I designed for TEDxRUET and for KnotByte. I take a problem through to a number someone can check.
                 </p>
                 <ul className="grid grid-cols-1 gap-y-5 max-w-[680px] mx-auto xl:mx-0">
                   {facts.map((item) => (

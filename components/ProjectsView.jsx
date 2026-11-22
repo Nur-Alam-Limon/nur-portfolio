@@ -24,7 +24,7 @@ export default function ProjectsView() {
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold">Selected work</h1>
         <p className="text-white/60 max-w-[720px] mt-4 mb-8">
-          The old student projects are gone. This is the production record: Bevy first, then contract, product, and research.
+          The old student projects are gone. This is the production record: Bevy first, then freelance, contract, product, and research.
         </p>
         <div className="flex flex-wrap gap-2 mb-8">
           {projectGroups.map((name) => (
