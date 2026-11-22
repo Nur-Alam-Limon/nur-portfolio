@@ -11,6 +11,13 @@ export async function POST(req) {
     );
   }
 
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    return new Response(
+      JSON.stringify({ message: 'Email is not configured on the server' }),
+      { status: 503 }
+    );
+  }
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -21,8 +28,9 @@ export async function POST(req) {
 
   try {
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_TO,
+      from: `"Portfolio" <${process.env.EMAIL_USER}>`,
+      replyTo: email,
+      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
       subject: `Message From Portfolio Site: ${service || 'General Inquiry'}`,
       text: `
         Name: ${name}

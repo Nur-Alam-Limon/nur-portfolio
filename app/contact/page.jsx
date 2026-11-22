@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,23 +14,38 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaGithub } from "react-icons/fa";
+import { profile, services } from "@/lib/profile";
 
 const info = [
   {
     icon: <FaPhoneAlt />,
     title: "Phone",
-    description: "(+880) 1764869750",
+    description: profile.phoneDisplay,
+    href: `tel:${profile.phone}`,
   },
   {
     icon: <FaEnvelope />,
     title: "Email",
-    description: "nuralam201425@gmail.com",
+    description: profile.email,
+    href: `mailto:${profile.email}`,
   },
   {
     icon: <FaMapMarkerAlt />,
-    title: "Address",
-    description: "Dhaka, Bangladesh",
+    title: "Location",
+    description: profile.location,
+  },
+  {
+    icon: <FaLinkedin />,
+    title: "LinkedIn",
+    description: "nur-alam04",
+    href: profile.linkedin,
+  },
+  {
+    icon: <FaGithub />,
+    title: "GitHub",
+    description: "Nur-Alam-Limon",
+    href: profile.github,
   },
 ];
 
@@ -42,6 +57,14 @@ export default function Contact() {
     message: "",
   });
   const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
+
+  useEffect(() => {
+    const chosen = new URLSearchParams(window.location.search).get("service");
+    if (chosen) {
+      setFormData((prev) => ({ ...prev, service: chosen }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +77,7 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSending(true);
     setStatus("Sending...");
 
     try {
@@ -64,14 +88,16 @@ export default function Contact() {
       });
 
       if (res.ok) {
-        setStatus("Message sent successfully!");
+        setStatus("Message sent. I will reply by email.");
         setFormData({ name: "", email: "", service: "", message: "" });
       } else {
-        setStatus("Failed to send message.");
+        setStatus("The form could not send. Use the email link on the right. It opens your mail app directly.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setStatus("An error occurred.");
+      setStatus("The form could not send. Use the email link on the right. It opens your mail app directly.");
+    } finally {
+      setSending(false);
     }
   };
 
@@ -94,9 +120,7 @@ export default function Contact() {
             >
               <h3 className="text-4xl text-accent">Let's work together</h3>
               <p className="text-white/60">
-                Whether you have a project in mind or just want to say hi, feel
-                free to reach out. I'm always open to new ideas and
-                collaborations.
+                Tell me the product and the constraint. Email and phone on the right work even if this form is blocked.
               </p>
 
               <div className="grid grid-cols-1 gap-6">
@@ -127,11 +151,11 @@ export default function Contact() {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Select a service</SelectLabel>
-                    <SelectItem value="Web Development">Web Development</SelectItem>
-                    <SelectItem value="Shopify App Development">Shopify App Development</SelectItem>
-                    <SelectItem value="Mobile App Development">Mobile App Development</SelectItem>
-                    <SelectItem value="UI/UX Design">UI/UX Design</SelectItem>
-                    <SelectItem value="Graphics Design">Graphics Design</SelectItem>
+                    {services.map((service) => (
+                      <SelectItem key={service.num} value={service.title}>
+                        {service.title}
+                      </SelectItem>
+                    ))}
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -145,8 +169,8 @@ export default function Contact() {
                 required
               />
 
-              <Button type="submit" size="md" className="max-w-40">
-                Send Message
+              <Button type="submit" size="md" className="max-w-40" disabled={sending}>
+                {sending ? "Sending" : "Send message"}
               </Button>
 
               {status && (
@@ -159,13 +183,19 @@ export default function Contact() {
           <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
             <ul className="flex flex-col gap-10">
               {info.map((item, index) => (
-                <li key={index} className="flex items-center gap-6">
+                <li key={item.title} className="flex items-center gap-6">
                   <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-[#1A2A3F] text-accent rounded-md flex items-center justify-center">
                     <div className="text-[28px]">{item.icon}</div>
                   </div>
                   <div className="flex-1">
                     <p className="text-white/60">{item.title}</p>
-                    <h3 className="text-xl">{item.description}</h3>
+                    {item.href ? (
+                      <a href={item.href} className="text-xl hover:text-accent" target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+                        {item.description}
+                      </a>
+                    ) : (
+                      <h3 className="text-xl">{item.description}</h3>
+                    )}
                   </div>
                 </li>
               ))}

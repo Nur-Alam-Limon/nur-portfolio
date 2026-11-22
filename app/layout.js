@@ -11,16 +11,18 @@ const JetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Portfolio",
-  description: "Portfolio Website of Nur Alam",
+  title: "Nur Alam Chowdhury · Senior Software Engineer",
+  description:
+    "Senior software engineer with 5+ years shipping production commerce systems, contract products, and applied AI.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={JetBrainsMono.variable}
-      >
+    <html lang="en" className={JetBrainsMono.variable}>
+      <body className={JetBrainsMono.className}>
         <Header />
         {children}
         <Social/>

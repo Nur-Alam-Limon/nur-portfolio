@@ -1,107 +1,75 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { BsMedium } from "react-icons/bs";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { getMediumPosts } from "@/lib/medium";
+import { profile } from "@/lib/profile";
 
+export const revalidate = 21600;
 
-export default function Blog() {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+export const metadata = {
+  title: "Writing · Nur Alam Chowdhury",
+};
 
-  useEffect(() => {
-    async function fetchBlogs() {
-      try {
-        const res = await fetch("/api/blogs");
-        if (!res.ok) throw new Error("Failed to fetch blogs");
-        const data = await res.json();
-        setBlogs(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchBlogs();
-  }, []);
-
-  const getExcerpt = (htmlContent, maxLength = 120) => {
-    if (!htmlContent) return "";
-    const text = htmlContent.replace(/<[^>]+>/g, ""); 
-    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-  };
+export default async function BlogPage() {
+  const posts = await getMediumPosts();
 
   return (
-    <section className="flex flex-col items-center justify-center text-white px-4 py-28 max-w-4xl mx-auto">
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="text-center w-full flex flex-col justify-center items-center"
-      >
-        <motion.h1
-          className="text-3xl md:text-5xl font-bold mb-4 text-accent text-center pb-4"
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          My Blogs
-        </motion.h1>
-
-        {loading ? (
-          <p className="text-white/70 text-lg md:text-xl mb-8">Loading blogs...</p>
-        ) : blogs.length === 0 ? (
-          <p className="text-white/70 text-lg md:text-xl mb-8">
-            No blogs available right now.
+    <section className="py-16">
+      <div className="container mx-auto">
+        <div className="max-w-2xl mb-10">
+          <p className="text-accent text-sm tracking-[0.2em] uppercase">Medium</p>
+          <h1 className="text-4xl font-bold mt-2">Writing</h1>
+          <p className="text-white/60 mt-3">
+            Notes on the stack I use. New posts appear here from Medium.
+          </p>
+        </div>
+        {posts.length === 0 ? (
+          <p className="text-white/70 mb-8">
+            Medium did not return posts just now. The profile is still linked below.
           </p>
         ) : (
-          <div className="space-y-6 mb-12 text-left w-full max-w-lg">
-            {blogs.map((blog) => (
-              <motion.div
-                key={blog._id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="mt-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 w-full max-w-lg text-left hover:border-accent transition"
-              >
-                <h2 className="text-xl font-semibold text-white">{blog.title}</h2>
-                <p className="text-sm text-muted-foreground mb-2">by {blog.author}</p>
-                <p className="text-white/70 text-sm">{getExcerpt(blog.content)}</p>
-                {blog.tags.length > 0 && (
-                  <p className="text-xs text-gray-400 mt-2">
-                    Tags: {blog.tags.join(", ")}
-                  </p>
-                )}
-              </motion.div>
+          <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {posts.map((post) => (
+              <li key={post.link}>
+                <a
+                  href={post.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col rounded-2xl border border-white/10 bg-[#122033] p-6 transition hover:-translate-y-1 hover:border-accent"
+                >
+                  {post.date && (
+                    <p className="text-xs uppercase tracking-[0.16em] text-accent">
+                      {new Date(post.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                  <h2 className="text-2xl font-semibold mt-3 group-hover:text-accent">{post.title}</h2>
+                  {post.excerpt && (
+                    <p className="text-white/60 mt-3 leading-relaxed">{post.excerpt}</p>
+                  )}
+                  <span className="mt-6 text-sm text-accent">Read on Medium</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
-
-        {/* Medium Link Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 w-full max-w-lg text-left hover:border-accent transition"
-        >
-          <Link
-            href="https://medium.com/@nuralam201425"
+        <div className="mt-16 border-t border-white/10 pt-10 flex flex-col items-center text-center">
+          <p className="text-white/50 text-sm">The full archive is on Medium, separate from the notes above.</p>
+          <a
+            href={profile.medium}
             target="_blank"
-            className="flex items-center gap-4"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center gap-3 rounded-full border border-accent/50 px-6 py-3 text-accent transition hover:bg-accent hover:text-[#001021]"
           >
-            <div className="bg-white/10 p-3 rounded-full">
-              <BsMedium className="text-white text-3xl" />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-white">Read My Blogs on Medium</h3>
-              <p className="text-white/70 text-sm">
-                Explore my articles on programming, projects, and more.
-              </p>
-            </div>
-          </Link>
-        </motion.div>
-      </motion.div>
+            <BsMedium className="text-xl" />
+            <span className="text-left">
+              <span className="block font-semibold leading-tight">All posts on Medium</span>
+              <span className="block text-xs opacity-80">medium.com/@nuralam201425</span>
+            </span>
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

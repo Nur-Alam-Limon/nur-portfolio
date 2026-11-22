@@ -1,93 +1,89 @@
-"use client"
+import BarChart from "@/components/BarChart";
+import HomeHero from "@/components/HomeHero";
+import Stats from "@/components/Stats";
+import { getGithubStats } from "@/lib/github";
+import { productionCommits, profile, projects, recommendations, yearsPlus } from "@/lib/profile";
+import Reviews from "@/components/Reviews";
+import Link from "next/link";
 
-import { FiDownload } from 'react-icons/fi'
-import React, { useEffect, useState } from 'react'
-import Photo from '@/components/Photo';
-import Stats from '@/components/Stats';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
+export const revalidate = 21600;
 
-const titles = [
-  "Software Engineer",
-  "Frontend Developer",
-  "Full Stack Developer",
-  "UI/UX & Graphics Designer"
-];
+export default async function Home() {
+  const github = await getGithubStats();
+  const years = yearsPlus(profile.experienceStart);
+  const highlights = [
+    projects.find((item) => item.id === "lbd"),
+    projects.find((item) => item.id === "share-cart"),
+    projects.find((item) => item.id === "jobsyo"),
+  ].filter(Boolean);
 
-export default function Home() {
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentTitle = titles[currentTitleIndex];
-
-    const timeout = setTimeout(() => {
-      if (isDeleting) {
-        // Remove characters
-        setDisplayedText((prev) => prev.slice(0, -1));
-      } else {
-        // Add characters
-        setDisplayedText((prev) => currentTitle.slice(0, prev.length + 1));
-      }
-
-      // When typing is complete, wait then delete
-      if (!isDeleting && displayedText === currentTitle) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      }
-
-      // When deleting is complete, move to next
-      if (isDeleting && displayedText === "") {
-        setIsDeleting(false);
-        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-      }
-    }, isDeleting ? 50 : 100); // speed: deleting is faster
-
-    return () => clearTimeout(timeout);
-  }, [displayedText, isDeleting, currentTitleIndex]);
+  const stats = [
+    { value: years, label: "Years of experience", suffix: "+" },
+    { value: github.repos, label: "Public repositories" },
+    { value: github.contributions, label: "Public contributions, last year" },
+    { value: github.followers, label: "GitHub followers" },
+  ];
 
   return (
-    <section className="h-full py-16">
+    <section className="h-full py-10">
       <div className="container mx-auto h-full">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
-          <div className="text-center xl:text-left order-2 xl:order-none">
-
-            <h1 className='text-4xl leading-[4rem]'>
-              Hello I'm <br /> <span className="text-accent">Nur Alam Chowdhury</span>
-            </h1>
-            {/* Typewriter Effect */}
-            <div className="h-[50px] mt-4 mb-6 text-2xl font-medium text-white min-w-[280px] inline-block">
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="inline-block"
-              >
-                {displayedText}
-                <span className="animate-pulse">|</span>
-              </motion.span>
+        <HomeHero years={years} />
+        <Stats items={stats.map((item) => (item.label.startsWith("Years") ? { ...item, suffix: "+" } : item))} />
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 pb-8">
+          {(github.months || []).length > 0 && (
+            <BarChart
+              title="Strongest public months"
+              note="Public GitHub only. Private repos are in the chart beside this one."
+              items={topCounts(
+                github.months.map((item) => ({ name: item.month, count: item.count })),
+                5
+              )}
+            />
+          )}
+          <BarChart
+            title="Largest production repos"
+            note="Private repos I led, including Bevy. These counts are not part of the GitHub numbers above."
+            items={topCounts(productionCommits, 4)}
+          />
+        </div>
+        <div className="pb-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-4">
+            <div>
+              <h2 className="text-2xl font-semibold">Projects</h2>
+              <p className="text-white/60 mt-1">Three with a number attached. The rest are on the Projects page.</p>
             </div>
-            <p className="max-w-[600px] mb-9 text-white/70">
-              Passionate Full-Stack Developer with 3.5+ years of hands-on experience building scalable and high-performance web applications using the MERN stack. Proficient in modern technologies like React.js, Next.js, Node.js, Nest.js, and MongoDB. Known for clean code, efficient problem-solving, and a strong eye for detail. I thrive in dynamic environments and enjoy turning complex ideas into elegant, functional solutions.
-            </p>
-            <div className="flex flex-col gap-8 w-full">
-              <a
-                href="https://drive.google.com/uc?export=download&id=1b-OKXcDAg0uZkWA6o8qZ6i-HPH9ztUV4"
-                download
-                target="_blank"
-                rel="noopener noreferrer">
-                <Button variant="outline" size="lg" className="cursor-pointer uppercase flex items-center gap-2 hover:!text-white mx-auto md:mx-0">
-                  <span> Download Resume</span>
-                  <FiDownload className="text-xl" />
-                </Button>
-              </a>
-            </div>
+            <Link href="/projects" className="text-accent hover:underline">
+              All projects
+            </Link>
           </div>
-          <div className='order-1 xl:order-none mb-8 xl:mb-0'>
-            <Photo />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {highlights.map((item) => (
+              <Link
+                key={item.id}
+                href={`/projects#${item.id}`}
+                className="rounded-xl border border-white/10 bg-[#1A2A3F] p-6 hover:border-accent transition flex flex-col"
+              >
+                <p className="text-accent text-sm">{item.org}</p>
+                <h3 className="text-xl font-semibold mt-1">{item.title}</h3>
+                <p className="text-white/70 mt-3 text-sm leading-relaxed flex-1">{item.summary}</p>
+                <div className="flex gap-6 mt-5">
+                  {item.metrics.slice(0, 2).map((metric) => (
+                    <div key={metric.label} className="min-w-0">
+                      <p className="text-2xl font-bold text-white whitespace-nowrap">{metric.value}</p>
+                      <p className="text-xs text-white/60 mt-1 leading-snug">{metric.short || metric.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
+        <Reviews items={recommendations} />
       </div>
-      <Stats />
     </section>
   );
+}
+
+function topCounts(items, limit) {
+  return [...items].sort((a, b) => b.count - a.count).slice(0, limit);
 }
